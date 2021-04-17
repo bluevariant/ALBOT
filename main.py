@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+import time
 
 
 mp_drawing = mp.solutions.drawing_utils
@@ -41,6 +42,8 @@ def handle_faces(face_mesh, image):
 if __name__ == "__main__":
     drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
     cap = cv2.VideoCapture(0)
+    p_time = 0
+
     with mp_hands.Hands(
         min_detection_confidence=0.5, min_tracking_confidence=0.5
     ) as hands, mp_face_mesh.FaceMesh(
@@ -54,9 +57,23 @@ if __name__ == "__main__":
                 continue
 
             image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
+
             handle_hands(hands, image)
             handle_faces(face_mesh, image)
+
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            c_time = time.time()
+            fps = 1 / (c_time - p_time)
+            p_time = c_time
+
+            cv2.putText(
+                image,
+                f"FPS: {int(fps)}",
+                (0, 24),
+                cv2.FONT_HERSHEY_COMPLEX,
+                1,
+                (255, 255, 255),
+            )
             cv2.imshow("Camera", image)
 
             if cv2.waitKey(5) & 0xFF == 27:
