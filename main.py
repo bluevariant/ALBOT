@@ -45,7 +45,7 @@ if __name__ == "__main__":
     p_time = 0
 
     with mp_hands.Hands(
-        min_detection_confidence=0.5, min_tracking_confidence=0.5
+        min_detection_confidence=0.7, min_tracking_confidence=0.7
     ) as hands, mp_face_mesh.FaceMesh(
         min_detection_confidence=0.5, min_tracking_confidence=0.5
     ) as face_mesh:
