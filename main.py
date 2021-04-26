@@ -179,10 +179,25 @@ def handle_hands(hands, image):
                 draw_text("OK", 250, 48)
 
             if state == "FUCK":
-                draw_text("FUCK", 250, 48)
+                draw_text("HELLO", 250, 48)
 
             if state == "GO":
                 draw_text("GO", 250, 48)
+
+            if state == "ONE":
+                draw_text("ONE", 250, 48)
+
+            if state == "TWO":
+                draw_text("TWO", 250, 48)
+
+            if state == "THREE":
+                draw_text("THREE", 250, 48)
+
+            if state == "FOUR":
+                draw_text("FOUR", 250, 48)
+
+            if state == "FIVE":
+                draw_text("FIVE", 250, 48)
 
             print(state)
 
