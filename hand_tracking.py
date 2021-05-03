@@ -161,7 +161,7 @@ def get_hand_state(hand_landmarks):
     return state
 
 
-def handle_hands(hands, image):
+def handle_hands(hands, image, debug=True):
     image.flags.writeable = False
     results = hands.process(image)
     image.flags.writeable = True
@@ -176,30 +176,39 @@ def handle_hands(hands, image):
             #     draw_text(image,"LIKE", 250, 48)
 
             if state == "OK":
-                draw_text(image, "OK", 250, 48)
+                if debug:
+                    draw_text(image, "OK", 250, 48)
 
             if state == "FUCK":
-                draw_text(image, "HELLO", 250, 48)
+                if debug:
+                    draw_text(image, "HELLO", 250, 48)
 
             if state == "GO":
-                draw_text(image, "GO", 250, 48)
+                if debug:
+                    draw_text(image, "GO", 250, 48)
 
             if state == "ONE":
-                draw_text(image, "ONE", 250, 48)
+                if debug:
+                    draw_text(image, "ONE", 250, 48)
 
             if state == "TWO":
-                draw_text(image, "TWO", 250, 48)
+                if debug:
+                    draw_text(image, "TWO", 250, 48)
 
             if state == "THREE":
-                draw_text(image, "THREE", 250, 48)
+                if debug:
+                    draw_text(image, "THREE", 250, 48)
 
             if state == "FOUR":
-                draw_text(image, "FOUR", 250, 48)
+                if debug:
+                    draw_text(image, "FOUR", 250, 48)
 
             if state == "FIVE":
-                draw_text(image, "FIVE", 250, 48)
+                if debug:
+                    draw_text(image, "FIVE", 250, 48)
 
-            print(state)
+            if debug:
+                print(state)
 
             # hand_map = [None] * 21
             #
@@ -239,7 +248,7 @@ def draw_text(image, text, x, y):
     )
 
 
-def start():
+def start(debug=True):
     drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
     cap = cv2.VideoCapture(0)
     p_time = 0
@@ -258,18 +267,20 @@ def start():
 
             image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
 
-            handle_hands(hands, image)
-            handle_faces(face_mesh, image, drawing_spec)
+            handle_hands(hands, image, debug=debug)
 
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            c_time = time.time()
-            fps = 1 / (c_time - p_time)
-            p_time = c_time
+            if debug:
+                handle_faces(face_mesh, image, drawing_spec)
 
-            draw_text(image, f"FPS: {int(fps)}", 0, 24)
-            cv2.imshow("Camera", image)
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                c_time = time.time()
+                fps = 1 / (c_time - p_time)
+                p_time = c_time
 
-            if cv2.waitKey(5) & 0xFF == 27:
-                break
+                draw_text(image, f"FPS: {int(fps)}", 0, 24)
+                cv2.imshow("Camera", image)
+
+                if cv2.waitKey(5) & 0xFF == 27:
+                    break
 
     cap.release()
