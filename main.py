@@ -1,7 +1,9 @@
 from hand_tracking import start as start_hand_tracking
+from gpiozero import LED
 
 
 def on_hand_action(action):
+    # actions: FIVE, FOUR, THREE, TWO, ONE, ROCK, SPIDERMAN, LIKE, OK, FUCK, GO
     print(f"action: {action}")
 
 
