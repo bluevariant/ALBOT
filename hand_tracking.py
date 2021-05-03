@@ -161,7 +161,7 @@ def get_hand_state(hand_landmarks):
     return state
 
 
-def handle_hands(hands, image, debug=True):
+def handle_hands(hands, image, debug=True, on_event=None):
     image.flags.writeable = False
     results = hands.process(image)
     image.flags.writeable = True
@@ -174,6 +174,9 @@ def handle_hands(hands, image, debug=True):
 
             # if state == "LIKE":
             #     draw_text(image,"LIKE", 250, 48)
+
+            if on_event is not None:
+                on_event(state)
 
             if state == "OK":
                 if debug:
@@ -248,7 +251,7 @@ def draw_text(image, text, x, y):
     )
 
 
-def start(debug=True):
+def start(debug=True, on_event=None):
     drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
     cap = cv2.VideoCapture(0)
     p_time = 0
@@ -267,7 +270,7 @@ def start(debug=True):
 
             image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
 
-            handle_hands(hands, image, debug=debug)
+            handle_hands(hands, image, debug=debug, on_event=on_event)
 
             if debug:
                 handle_faces(face_mesh, image, drawing_spec)
