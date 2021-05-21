@@ -9,7 +9,7 @@ if not is_raspberrypi():
 
 # https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering
 go_led = LED(17)
-dance_led = LED(1)
+dance_led = LED(18)
 
 
 def on_hand_action(action):
