@@ -269,6 +269,7 @@ def start(debug=True, on_event=None):
                 continue
 
             image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
+            # image = cv2.resize(image, (320, 240))
 
             handle_hands(hands, image, debug=debug, on_event=on_event)
 
