@@ -77,7 +77,7 @@ def on_open(ws):
 
 
 if __name__ == "__main__":
-    websocket.enableTrace(False)
+    websocket.enableTrace(True)
 
     ws = websocket.WebSocketApp(
         "wss://ws.dongnv.dev/",
