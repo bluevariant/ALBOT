@@ -9,7 +9,7 @@ import numpy as np
 
 
 class HandAction(BaseModel):
-    image_file: FileContent = Field(..., mime_type="image/jpg", title="Hand Image")
+    image_file: FileContent = Field(..., mime_type="image/jpg", title="Image")
 
 
 class HandActionOutput(BaseModel):
