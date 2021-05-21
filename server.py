@@ -4,6 +4,8 @@ from PIL import Image
 import numpy as np
 from opyrator.components.types import FileContent
 import uuid
+import cv2
+import numpy as np
 
 
 class HandAction(BaseModel):
@@ -20,4 +22,7 @@ def hand_action(
     hand_image = Image.fromarray(
         np.array(Image.open(io.BytesIO(input.image_file.as_bytes())))
     )
+    hand_image = cv2.cvtColor(np.array(hand_image), cv2.COLOR_RGB2BGR)
+    action = ""
+
     return HandActionOutput(action=action)
