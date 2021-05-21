@@ -1,6 +1,11 @@
 import cv2
 import base64
 import requests
+from gpiozero import Device, LED
+from gpiozero.pins.mock import MockFactory
+from util import is_raspberrypi
+
+print(f"is_raspberrypi: {is_raspberrypi()}")
 
 API_END_POINT = "http://192.168.137.1:8080/call"
 

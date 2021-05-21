@@ -25,4 +25,6 @@ def hand_action(
     hand_image = cv2.cvtColor(np.array(hand_image), cv2.COLOR_RGB2BGR)
     action = ""
 
+    print(type(hand_image))
+
     return HandActionOutput(action=action)
