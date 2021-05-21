@@ -107,6 +107,7 @@ vs2015_runtime=14.27.29016=h5e58377_2
 watchdog=2.1.2=pypi_0
 wcwidth=0.2.5=pypi_0
 webencodings=0.5.1=pypi_0
+websocket-client=1.0.0=pypi_0
 wheel=0.36.2=pyhd3eb1b0_0
 widgetsnbextension=3.5.1=pypi_0
 win32-setctime=1.0.3=pypi_0
