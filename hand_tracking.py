@@ -291,4 +291,4 @@ def start(debug=True, on_event=None):
 
 
 def get_hands():
-    return mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
+    return mp_hands.Hands(min_detection_confidence=0.4, min_tracking_confidence=0.4)
