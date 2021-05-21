@@ -15,6 +15,8 @@ DANCE_LED = LED(18)
 
 API_END_POINT = "http://192.168.137.1:8080/call"
 
+GO_LED.on()
+
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
 
