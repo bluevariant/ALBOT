@@ -1,2 +1,2 @@
 @echo off
-opyrator launch-api main:hand_action
+opyrator launch-api server:hand_action
