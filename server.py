@@ -10,8 +10,8 @@ from hand_tracking import get_hands, handle_hands
 import uuid
 import websocket
 import json
-
-hands = get_hands()
+from io import StringIO
+import base64
 
 try:
     import thread
@@ -19,11 +19,20 @@ except ImportError:
     import _thread as thread
 import time
 
+hands = get_hands()
+
 CLIENT_ID = "hand_tracker"
 
 
 def on_message(ws, message):
-    print(f"message: {message}")
+    data = json.loads(message)
+    imgdata = base64.b64decode(data["content"])
+    image = Image.fromarray(np.array(Image.open(io.BytesIO(imgdata))))
+    image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+
+    print(type(image))
+
+    print(f"data: {data['content']}")
 
 
 def on_error(ws, error):
