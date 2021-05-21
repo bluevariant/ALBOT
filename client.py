@@ -90,23 +90,3 @@ if __name__ == "__main__":
     )
 
     ws.run_forever()
-
-# if __name__ == "__main__":
-#     cap = cv2.VideoCapture(0)
-#
-#     while cap.isOpened():
-#         success, image = cap.read()
-#
-#         if not success:
-#             print("Ignoring empty camera frame.")
-#             continue
-#
-#         success, buffer = cv2.imencode(".jpg", image)
-#
-#         if success:
-#             jpg_as_text = base64.b64encode(buffer).decode()
-#             r = requests.post(API_END_POINT, json={"image_file": jpg_as_text})
-#
-#             print(f'action: {r.json()["action"]}')
-#
-#     cap.release()
