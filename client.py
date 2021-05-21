@@ -1,5 +1,8 @@
 import cv2
 import base64
+import requests
+
+API_END_POINT = "http://192.168.137.1:8080/call"
 
 cap = cv2.VideoCapture(0)
 
@@ -14,6 +17,8 @@ while cap.isOpened():
 
     if success:
         jpg_as_text = base64.b64encode(buffer).decode()
-        print(jpg_as_text)
+        r = requests.post(API_END_POINT, json={"image_file": jpg_as_text})
+
+        print(f'action: {r.json()["action"]}')
 
 cap.release()
