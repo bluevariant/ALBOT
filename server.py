@@ -1,4 +1,3 @@
-from face_aligner2 import save_align_face
 import io
 from pydantic import BaseModel, Field
 from PIL import Image
