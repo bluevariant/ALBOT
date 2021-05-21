@@ -33,4 +33,4 @@ def on_hand_action(action):
 
 
 if __name__ == "__main__":
-    start_hand_tracking(debug=False, on_event=on_hand_action)
+    start_hand_tracking(debug=True, on_event=on_hand_action)
