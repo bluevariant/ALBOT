@@ -8,6 +8,8 @@ from util import is_raspberrypi
 # mock pin to test on pc
 if not is_raspberrypi():
     Device.pin_factory = MockFactory()
+else:
+    print("raspberry pi is ready")
 
 # https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering
 GO_LED = LED(17)
