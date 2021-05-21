@@ -8,6 +8,12 @@ import websocket
 import json
 import uuid
 
+try:
+    import thread
+except ImportError:
+    import _thread as thread
+import time
+
 # mock pin to test on pc
 if not is_raspberrypi():
     Device.pin_factory = MockFactory()
@@ -17,14 +23,6 @@ else:
 # https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering
 GO_LED = LED(17)
 DANCE_LED = LED(18)
-
-API_END_POINT = "http://192.168.137.1:8080/call"
-
-try:
-    import thread
-except ImportError:
-    import _thread as thread
-import time
 
 CLIENT_ID = str(uuid.uuid4())
 
