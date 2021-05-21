@@ -30,9 +30,20 @@ def on_message(ws, message):
     image = Image.fromarray(np.array(Image.open(io.BytesIO(imgdata))))
     image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-    print(type(image))
+    def on_event(action):
+        print(f"action: {action}")
 
-    print(f"data: {data['content']}")
+        ws.send(
+            json.dumps(
+                {
+                    "to": data["from"],
+                    "from": CLIENT_ID,
+                    "content": action,
+                }
+            )
+        )
+
+    handle_hands(hands, image, debug=False, on_event=on_event)
 
 
 def on_error(ws, error):
@@ -51,7 +62,7 @@ def on_open(ws):
 
 
 if __name__ == "__main__":
-    websocket.enableTrace(True)
+    websocket.enableTrace(False)
 
     ws = websocket.WebSocketApp(
         "wss://ws.dongnv.dev/",

@@ -30,7 +30,9 @@ CLIENT_ID = str(uuid.uuid4())
 
 
 def on_message(ws, message):
-    print(f"message: {message}")
+    data = json.loads(message)
+
+    print(f'action: {data["content"]}')
 
 
 def on_error(ws, error):
@@ -75,7 +77,7 @@ def on_open(ws):
 
 
 if __name__ == "__main__":
-    websocket.enableTrace(True)
+    websocket.enableTrace(False)
 
     ws = websocket.WebSocketApp(
         "wss://ws.dongnv.dev/",
