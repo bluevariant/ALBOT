@@ -29,8 +29,22 @@ CLIENT_ID = str(uuid.uuid4())
 
 def on_message(ws, message):
     data = json.loads(message)
+    action = data["content"]
 
-    print(f'action: {data["content"]}')
+    if action == "GO":
+        DANCE_LED.off()
+        GO_LED.on()
+
+    if action == "ROCK" or action == "SPIDERMAN":
+        GO_LED.off()
+        DANCE_LED.on()
+
+    if action == "OK" or action == "FIVE":
+        GO_LED.off()
+        DANCE_LED.off()
+
+    print(f"is dancing: {DANCE_LED.is_active}")
+    print(f"is walking: {GO_LED.is_active}")
 
 
 def on_error(ws, error):
